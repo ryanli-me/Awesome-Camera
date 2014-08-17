@@ -21,6 +21,14 @@
 		078204A3199E13E800CE9036 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07820485199E13E800CE9036 /* UIKit.framework */; };
 		078204AB199E13E800CE9036 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 078204A9199E13E800CE9036 /* InfoPlist.strings */; };
 		078204AD199E13E800CE9036 /* CameraTest2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 078204AC199E13E800CE9036 /* CameraTest2Tests.m */; };
+		078204B7199E15BF00CE9036 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 078204B6199E15BF00CE9036 /* AVFoundation.framework */; };
+		078204BA199E195800CE9036 /* PhotoProcessingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 078204B9199E195800CE9036 /* PhotoProcessingViewController.m */; };
+		078204BC199E348300CE9036 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 078204BB199E348300CE9036 /* AssetsLibrary.framework */; };
+		078204BE199E364000CE9036 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 078204BD199E364000CE9036 /* ImageIO.framework */; };
+		078204C2199E4D3900CE9036 /* VPImageCropperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 078204C1199E4D3900CE9036 /* VPImageCropperViewController.m */; };
+		0782054B199EBCD900CE9036 /* PixellatedPeople.m in Sources */ = {isa = PBXBuildFile; fileRef = 07820548199EBCD900CE9036 /* PixellatedPeople.m */; };
+		0782054D199EBCD900CE9036 /* SimpleCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 0782054A199EBCD900CE9036 /* SimpleCustom.m */; };
+		07820550199EBD2D00CE9036 /* OldeFilm.m in Sources */ = {isa = PBXBuildFile; fileRef = 0782054F199EBD2D00CE9036 /* OldeFilm.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +61,16 @@
 		078204A8199E13E800CE9036 /* CameraTest2Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CameraTest2Tests-Info.plist"; sourceTree = "<group>"; };
 		078204AA199E13E800CE9036 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		078204AC199E13E800CE9036 /* CameraTest2Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraTest2Tests.m; sourceTree = "<group>"; };
+		078204B6199E15BF00CE9036 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		078204B8199E195800CE9036 /* PhotoProcessingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoProcessingViewController.h; sourceTree = "<group>"; };
+		078204B9199E195800CE9036 /* PhotoProcessingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoProcessingViewController.m; sourceTree = "<group>"; };
+		078204BB199E348300CE9036 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		078204BD199E364000CE9036 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		078204C0199E4D3900CE9036 /* VPImageCropperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPImageCropperViewController.h; sourceTree = "<group>"; };
+		078204C1199E4D3900CE9036 /* VPImageCropperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPImageCropperViewController.m; sourceTree = "<group>"; };
+		07820548199EBCD900CE9036 /* PixellatedPeople.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PixellatedPeople.m; sourceTree = "<group>"; };
+		0782054A199EBCD900CE9036 /* SimpleCustom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleCustom.m; sourceTree = "<group>"; };
+		0782054F199EBD2D00CE9036 /* OldeFilm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldeFilm.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +78,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078204BE199E364000CE9036 /* ImageIO.framework in Frameworks */,
+				078204BC199E348300CE9036 /* AssetsLibrary.framework in Frameworks */,
+				078204B7199E15BF00CE9036 /* AVFoundation.framework in Frameworks */,
 				07820484199E13E800CE9036 /* CoreGraphics.framework in Frameworks */,
 				07820486199E13E800CE9036 /* UIKit.framework in Frameworks */,
 				07820482199E13E800CE9036 /* Foundation.framework in Frameworks */,
@@ -101,6 +122,9 @@
 		07820480199E13E800CE9036 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				078204BD199E364000CE9036 /* ImageIO.framework */,
+				078204BB199E348300CE9036 /* AssetsLibrary.framework */,
+				078204B6199E15BF00CE9036 /* AVFoundation.framework */,
 				07820481199E13E800CE9036 /* Foundation.framework */,
 				07820483199E13E800CE9036 /* CoreGraphics.framework */,
 				07820485199E13E800CE9036 /* UIKit.framework */,
@@ -112,6 +136,9 @@
 		07820487199E13E800CE9036 /* CameraTest2 */ = {
 			isa = PBXGroup;
 			children = (
+				078204BF199E4D3900CE9036 /* VPImageCropper */,
+				078204B8199E195800CE9036 /* PhotoProcessingViewController.h */,
+				078204B9199E195800CE9036 /* PhotoProcessingViewController.m */,
 				07820490199E13E800CE9036 /* AppDelegate.h */,
 				07820491199E13E800CE9036 /* AppDelegate.m */,
 				07820493199E13E800CE9036 /* Main.storyboard */,
@@ -126,6 +153,7 @@
 		07820488199E13E800CE9036 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0782054E199EBCE500CE9036 /* Custom Filters */,
 				07820489199E13E800CE9036 /* CameraTest2-Info.plist */,
 				0782048A199E13E800CE9036 /* InfoPlist.strings */,
 				0782048D199E13E800CE9036 /* main.m */,
@@ -150,6 +178,25 @@
 				078204A9199E13E800CE9036 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		078204BF199E4D3900CE9036 /* VPImageCropper */ = {
+			isa = PBXGroup;
+			children = (
+				078204C0199E4D3900CE9036 /* VPImageCropperViewController.h */,
+				078204C1199E4D3900CE9036 /* VPImageCropperViewController.m */,
+			);
+			path = VPImageCropper;
+			sourceTree = "<group>";
+		};
+		0782054E199EBCE500CE9036 /* Custom Filters */ = {
+			isa = PBXGroup;
+			children = (
+				0782054F199EBD2D00CE9036 /* OldeFilm.m */,
+				07820548199EBCD900CE9036 /* PixellatedPeople.m */,
+				0782054A199EBCD900CE9036 /* SimpleCustom.m */,
+			);
+			name = "Custom Filters";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,8 +296,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				078204C2199E4D3900CE9036 /* VPImageCropperViewController.m in Sources */,
+				078204BA199E195800CE9036 /* PhotoProcessingViewController.m in Sources */,
 				07820498199E13E800CE9036 /* ViewController.m in Sources */,
 				07820492199E13E800CE9036 /* AppDelegate.m in Sources */,
+				0782054B199EBCD900CE9036 /* PixellatedPeople.m in Sources */,
+				0782054D199EBCD900CE9036 /* SimpleCustom.m in Sources */,
+				07820550199EBD2D00CE9036 /* OldeFilm.m in Sources */,
 				0782048E199E13E800CE9036 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

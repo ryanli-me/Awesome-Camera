@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VPImageCropperViewController.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UINavigationControllerDelegate, VPImageCropperDelegate, UIImagePickerControllerDelegate>
 
 @end
