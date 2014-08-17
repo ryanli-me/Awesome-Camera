@@ -29,6 +29,7 @@
 		0782054B199EBCD900CE9036 /* PixellatedPeople.m in Sources */ = {isa = PBXBuildFile; fileRef = 07820548199EBCD900CE9036 /* PixellatedPeople.m */; };
 		0782054D199EBCD900CE9036 /* SimpleCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 0782054A199EBCD900CE9036 /* SimpleCustom.m */; };
 		07820550199EBD2D00CE9036 /* OldeFilm.m in Sources */ = {isa = PBXBuildFile; fileRef = 0782054F199EBD2D00CE9036 /* OldeFilm.m */; };
+		2EA3C13C19A0B7B1006D7E1C /* BetterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA3C13B19A0B7B1006D7E1C /* BetterButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		07820548199EBCD900CE9036 /* PixellatedPeople.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PixellatedPeople.m; sourceTree = "<group>"; };
 		0782054A199EBCD900CE9036 /* SimpleCustom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleCustom.m; sourceTree = "<group>"; };
 		0782054F199EBD2D00CE9036 /* OldeFilm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldeFilm.m; sourceTree = "<group>"; };
+		2EA3C13A19A0B7B0006D7E1C /* BetterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetterButton.h; sourceTree = "<group>"; };
+		2EA3C13B19A0B7B1006D7E1C /* BetterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BetterButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +156,8 @@
 		07820488199E13E800CE9036 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2EA3C13A19A0B7B0006D7E1C /* BetterButton.h */,
+				2EA3C13B19A0B7B1006D7E1C /* BetterButton.m */,
 				0782054E199EBCE500CE9036 /* Custom Filters */,
 				07820489199E13E800CE9036 /* CameraTest2-Info.plist */,
 				0782048A199E13E800CE9036 /* InfoPlist.strings */,
@@ -296,6 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EA3C13C19A0B7B1006D7E1C /* BetterButton.m in Sources */,
 				078204C2199E4D3900CE9036 /* VPImageCropperViewController.m in Sources */,
 				078204BA199E195800CE9036 /* PhotoProcessingViewController.m in Sources */,
 				07820498199E13E800CE9036 /* ViewController.m in Sources */,
@@ -508,6 +514,7 @@
 				078204B2199E13E800CE9036 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		078204B3199E13E800CE9036 /* Build configuration list for PBXNativeTarget "CameraTest2Tests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +523,7 @@
 				078204B5199E13E800CE9036 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

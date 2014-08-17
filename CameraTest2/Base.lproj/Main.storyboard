@@ -21,20 +21,28 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFC-Ma-JAo">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFC-Ma-JAo">
                                 <rect key="frame" x="125" y="478" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Shoot">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="PgE-6u-l73"/>
+                                    <constraint firstAttribute="width" constant="70" id="euP-de-GmD"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="Shoot">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="shootPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ccw-I7-ElN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9g-dM-6mQ">
-                                <rect key="frame" x="254" y="20" width="46" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9g-dM-6mQ" customClass="BetterButton">
+                                <rect key="frame" x="270" y="26" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Selfie">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="rvJ-cp-fck"/>
+                                    <constraint firstAttribute="width" constant="30" id="xil-FJ-Oj1"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="Flip">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -42,10 +50,14 @@
                                     <action selector="toggleCamera:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3qQ-lv-eYS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfV-JS-4Cj">
-                                <rect key="frame" x="20" y="20" width="50" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfV-JS-4Cj" customClass="BetterButton">
+                                <rect key="frame" x="20" y="20" width="24" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Flash 0">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="uEk-KT-1YW"/>
+                                    <constraint firstAttribute="width" constant="24" id="y5O-v4-obF"/>
+                                </constraints>
+                                <state key="normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -66,6 +78,14 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nfV-JS-4Cj" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" constant="20" symbolic="YES" id="AZN-5f-Zh4"/>
+                            <constraint firstAttribute="centerX" secondItem="vFC-Ma-JAo" secondAttribute="centerX" id="d5T-Lc-uPZ"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="vFC-Ma-JAo" secondAttribute="bottom" constant="20" id="fJM-yF-bA3"/>
+                            <constraint firstAttribute="trailing" secondItem="e9g-dM-6mQ" secondAttribute="trailing" constant="20" id="jlf-Oi-UBY"/>
+                            <constraint firstItem="nfV-JS-4Cj" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" symbolic="YES" id="pLC-50-lVj"/>
+                            <constraint firstItem="nfV-JS-4Cj" firstAttribute="centerY" secondItem="e9g-dM-6mQ" secondAttribute="centerY" id="xfF-nP-bhe"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="D3W-Hm-qOb"/>
                     <connections>
@@ -323,7 +343,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Shoot" width="140" height="140"/>
+        <image name="Flip" width="30" height="30"/>
+        <image name="Shoot" width="70" height="70"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -13,20 +13,20 @@
 #import <ImageIO/ImageIO.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
-typedef enum {
-    FlashOff,
-    FlashOn,
-    FlashAuto
-}FlashMode;
+#define FLASH_MODE_OFF 0
+#define FLASH_MODE_ON 1
+#define FLASH_MODE_AUTO 2
+#define FLASH_MODE_COUNT 3
 
 @interface ViewController ()
+
 @property (weak, nonatomic) IBOutlet UIView *frameForCapture;
 @property (weak, nonatomic) IBOutlet UIButton *flashButton;
+@property (nonatomic, strong) NSNumber *flashMode;
 
 @end
 
 #define ORIGINAL_MAX_WIDTH 640.0f
-
 
 @implementation ViewController
 {
@@ -35,15 +35,22 @@ typedef enum {
     CIFilter *filter;
     CIContext *context;
     BOOL front;
-    FlashMode mode;
 }
+
+- (void)setFlashMode:(NSNumber *)flashMode
+{
+	_flashMode = flashMode;
+	[self.flashButton setBackgroundImage:[UIImage imageNamed:[NSString stringWithFormat:@"Flash %@", flashMode]] forState:UIControlStateNormal];
+}
+
+#pragma mark - view controller life cycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     context = [CIContext contextWithOptions:nil];
     
-    session  = [[AVCaptureSession alloc]init];
+    session = [[AVCaptureSession alloc]init];
     [session setSessionPreset:AVCaptureSessionPreset1280x720];
     
     AVCaptureDevice *inputDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
@@ -70,7 +77,8 @@ typedef enum {
     
     [session addOutput:stillImageOutput];
     [session startRunning];
-	// Do any additional setup after loading the view, typically from a nib.
+	
+	self.flashMode = @0;
 }
 
 - (IBAction)openLibrary:(UIButton *)sender
@@ -93,7 +101,6 @@ typedef enum {
 
 - (IBAction)toggleCamera:(id)sender
 {
-    
 	AVCaptureDevicePosition desiredPosition;
 	if (front)
 		desiredPosition = AVCaptureDevicePositionBack;
@@ -117,7 +124,6 @@ typedef enum {
 
 - (IBAction)shootPressed:(UIButton *)sender
 {
-    
     AVCaptureConnection *videoConnection = nil;
     
     for (AVCaptureConnection *connection in stillImageOutput.connections) {
@@ -171,35 +177,26 @@ typedef enum {
 
 - (IBAction)toggleFlash:(id)sender
 {
-    mode ++;
-    mode %= 3;
-    [self.flashButton setTitle:[NSString stringWithFormat:@"Flash %d",mode ] forState:UIControlStateNormal];
+	self.flashMode = @(([self.flashMode intValue] + 1) % 3);
     NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
     for (AVCaptureDevice *device in devices) {
-        if ([device hasFlash] == YES) {
-            
-            NSLog(@"Current Device Flash Mode: %d", device.flashMode);
+        if ([device hasFlash]) {
             [device lockForConfiguration:nil];
 
-            switch (mode) {
-                case FlashOn:
+            switch ([self.flashMode intValue]) {
+                case FLASH_MODE_ON:
                     if ([device isFlashModeSupported:AVCaptureFlashModeOn])
                         [device setFlashMode:AVCaptureFlashModeOn];
                     break;
-                case FlashOff:
+                case FLASH_MODE_OFF:
                     if ([device isFlashModeSupported:AVCaptureFlashModeOff])
                         [device setFlashMode:AVCaptureFlashModeOff];
                     break;
-                case FlashAuto:
+                case FLASH_MODE_AUTO:
                     if ([device isFlashModeSupported:AVCaptureFlashModeAuto])
                         [device setFlashMode:AVCaptureFlashModeAuto];
-                    break;
-                default:
-                    break;
             }
-            NSLog(@"After Device Flash Mode: %d", device.flashMode);
         }
-        
         [device unlockForConfiguration];
         break;
     }
@@ -214,12 +211,6 @@ typedef enum {
             ((PhotoProcessingViewController *)segue.destinationViewController).image = (CIImage *)sender;
         }
     }
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 // callback when cropping finished
