@@ -29,6 +29,8 @@
 		0782054B199EBCD900CE9036 /* PixellatedPeople.m in Sources */ = {isa = PBXBuildFile; fileRef = 07820548199EBCD900CE9036 /* PixellatedPeople.m */; };
 		0782054D199EBCD900CE9036 /* SimpleCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 0782054A199EBCD900CE9036 /* SimpleCustom.m */; };
 		07820550199EBD2D00CE9036 /* OldeFilm.m in Sources */ = {isa = PBXBuildFile; fileRef = 0782054F199EBD2D00CE9036 /* OldeFilm.m */; };
+		078D49AA19A0D47400B78985 /* UIImage+TintColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 078D49A919A0D47400B78985 /* UIImage+TintColor.m */; };
+		078D49AD19A0E08A00B78985 /* UIImage+Crop.m in Sources */ = {isa = PBXBuildFile; fileRef = 078D49AC19A0E08A00B78985 /* UIImage+Crop.m */; };
 		2EA3C13C19A0B7B1006D7E1C /* BetterButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2EA3C13B19A0B7B1006D7E1C /* BetterButton.m */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +74,10 @@
 		07820548199EBCD900CE9036 /* PixellatedPeople.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PixellatedPeople.m; sourceTree = "<group>"; };
 		0782054A199EBCD900CE9036 /* SimpleCustom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleCustom.m; sourceTree = "<group>"; };
 		0782054F199EBD2D00CE9036 /* OldeFilm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OldeFilm.m; sourceTree = "<group>"; };
+		078D49A819A0D47400B78985 /* UIImage+TintColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+TintColor.h"; sourceTree = "<group>"; };
+		078D49A919A0D47400B78985 /* UIImage+TintColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+TintColor.m"; sourceTree = "<group>"; };
+		078D49AB19A0E08A00B78985 /* UIImage+Crop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Crop.h"; sourceTree = "<group>"; };
+		078D49AC19A0E08A00B78985 /* UIImage+Crop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Crop.m"; sourceTree = "<group>"; };
 		2EA3C13A19A0B7B0006D7E1C /* BetterButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BetterButton.h; sourceTree = "<group>"; };
 		2EA3C13B19A0B7B1006D7E1C /* BetterButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BetterButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -139,6 +145,10 @@
 		07820487199E13E800CE9036 /* CameraTest2 */ = {
 			isa = PBXGroup;
 			children = (
+				078D49AB19A0E08A00B78985 /* UIImage+Crop.h */,
+				078D49AC19A0E08A00B78985 /* UIImage+Crop.m */,
+				078D49A819A0D47400B78985 /* UIImage+TintColor.h */,
+				078D49A919A0D47400B78985 /* UIImage+TintColor.m */,
 				078204BF199E4D3900CE9036 /* VPImageCropper */,
 				078204B8199E195800CE9036 /* PhotoProcessingViewController.h */,
 				078204B9199E195800CE9036 /* PhotoProcessingViewController.m */,
@@ -305,6 +315,8 @@
 				078204C2199E4D3900CE9036 /* VPImageCropperViewController.m in Sources */,
 				078204BA199E195800CE9036 /* PhotoProcessingViewController.m in Sources */,
 				07820498199E13E800CE9036 /* ViewController.m in Sources */,
+				078D49AD19A0E08A00B78985 /* UIImage+Crop.m in Sources */,
+				078D49AA19A0D47400B78985 /* UIImage+TintColor.m in Sources */,
 				07820492199E13E800CE9036 /* AppDelegate.m in Sources */,
 				0782054B199EBCD900CE9036 /* PixellatedPeople.m in Sources */,
 				0782054D199EBCD900CE9036 /* SimpleCustom.m in Sources */,

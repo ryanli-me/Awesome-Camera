@@ -12,6 +12,9 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <ImageIO/ImageIO.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import "BetterButton.h"
+#import "UIImage+TintColor.h"
+#import "UIImage+Crop.h"
 
 #define FLASH_MODE_OFF 0
 #define FLASH_MODE_ON 1
@@ -23,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UIView *frameForCapture;
 @property (weak, nonatomic) IBOutlet UIButton *flashButton;
 @property (nonatomic, strong) NSNumber *flashMode;
+@property (weak, nonatomic) IBOutlet BetterButton *selfieButton;
+@property (weak, nonatomic) IBOutlet UIButton *libraryButton;
 
 @end
 
@@ -35,6 +40,7 @@
     CIFilter *filter;
     CIContext *context;
     BOOL front;
+    AVCaptureVideoPreviewLayer *previewLayer;
 }
 
 - (void)setFlashMode:(NSNumber *)flashMode
@@ -48,6 +54,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     context = [CIContext contextWithOptions:nil];
     
     session = [[AVCaptureSession alloc]init];
@@ -61,7 +69,7 @@
         [session addInput:deviceInput];
     }
     
-    AVCaptureVideoPreviewLayer *previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
+    previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
     [previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     CALayer *rootLayer = [[self view] layer];
     [rootLayer setMasksToBounds:YES];
@@ -79,6 +87,88 @@
     [session startRunning];
 	
 	self.flashMode = @0;
+    
+    
+    [self.libraryButton.layer setCornerRadius:4];
+    [self.libraryButton.layer setBorderWidth:1];
+    [self.libraryButton.layer setBorderColor:[UIColor colorWithWhite:1 alpha:0.3].CGColor];
+
+    
+    if ( [ALAssetsLibrary authorizationStatus] !=  ALAuthorizationStatusDenied ) {
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init];
+        
+        // Enumerate just the photos and videos group by using ALAssetsGroupSavedPhotos.
+        [library enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop) {
+            
+            // Within the group enumeration block, filter to enumerate just photos.
+            [group setAssetsFilter:[ALAssetsFilter allPhotos]];
+            
+            // Chooses the photo at the last index
+            [group enumerateAssetsWithOptions:NSEnumerationReverse usingBlock:^(ALAsset *alAsset, NSUInteger index, BOOL *innerStop) {
+                
+                // The end of the enumeration is signaled by asset == nil.
+                if (alAsset) {
+                    ALAssetRepresentation *representation = [alAsset defaultRepresentation];
+                    UIImage *latestPhoto = [UIImage imageWithCGImage:[representation fullScreenImage]];
+                    
+                    // Stop the enumerations
+                    *stop = YES; *innerStop = YES;
+                    
+                    // Do something interesting with the AV asset.
+                    UIImage *newImage = [self squareImageWithImage:latestPhoto scaledToSize:self.libraryButton.frame.size];
+                    //newImage = [UIImage createRoundedRectImage:newImage size:newImage.size roundRadius:8];
+
+                    [self.libraryButton setBackgroundImage:newImage forState:UIControlStateNormal];
+                    self.libraryButton.clipsToBounds = YES;
+                }
+            }];
+        } failureBlock: ^(NSError *error) {
+            // Typically you should handle an error more gracefully than this.
+            NSLog(@"No groups");
+        }];
+    }
+
+}
+
+- (UIImage *)squareImageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    double ratio;
+    double delta;
+    CGPoint offset;
+    
+    //make a new square size, that is the resized imaged width
+    CGSize sz = CGSizeMake(newSize.width, newSize.width);
+    
+    //figure out if the picture is landscape or portrait, then
+    //calculate scale factor and offset
+    if (image.size.width > image.size.height) {
+        ratio = newSize.width / image.size.width;
+        delta = (ratio*image.size.width - ratio*image.size.height);
+        offset = CGPointMake(delta/2, 0);
+    } else {
+        ratio = newSize.width / image.size.height;
+        delta = (ratio*image.size.height - ratio*image.size.width);
+        offset = CGPointMake(0, delta/2);
+    }
+    
+    //make the final clipping rect based on the calculated values
+    CGRect clipRect = CGRectMake(-offset.x, -offset.y,
+                                 (ratio * image.size.width) + delta,
+                                 (ratio * image.size.height) + delta);
+    
+    
+    //start a new context, with scale factor 0.0 so retina displays get
+    //high quality image
+    if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+        UIGraphicsBeginImageContextWithOptions(sz, YES, 0.0);
+    } else {
+        UIGraphicsBeginImageContext(sz);
+    }
+    UIRectClip(clipRect);
+    [image drawInRect:clipRect];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImage;
 }
 
 - (IBAction)openLibrary:(UIButton *)sender
@@ -102,11 +192,14 @@
 - (IBAction)toggleCamera:(id)sender
 {
 	AVCaptureDevicePosition desiredPosition;
-	if (front)
+	if (front) {
 		desiredPosition = AVCaptureDevicePositionBack;
-	else
+        [self.selfieButton setBackgroundImage:[UIImage imageNamed:@"flip"] forState:UIControlStateNormal];
+    }
+	else {
 		desiredPosition = AVCaptureDevicePositionFront;
-	
+        [self.selfieButton setBackgroundImage:[[UIImage imageNamed:@"flip"] tintImageWithColor:[UIColor colorWithRed:255/255.0f green:212/255.0f blue:45/255.0f alpha:1.0f]] forState:UIControlStateNormal];
+    }
 	for (AVCaptureDevice *d in [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo]) {
 		if ([d position] == desiredPosition) {
 			[session beginConfiguration];
@@ -124,12 +217,14 @@
 
 - (IBAction)shootPressed:(UIButton *)sender
 {
+
     AVCaptureConnection *videoConnection = nil;
     
     for (AVCaptureConnection *connection in stillImageOutput.connections) {
         for (AVCaptureInputPort *port in [connection inputPorts]) {
             if ([[port mediaType]isEqual:AVMediaTypeVideo]) {
                 videoConnection = connection;
+                
                 break;
             }
         }
@@ -154,8 +249,16 @@
             
             NSLog(@"%@",[croppedImage.properties valueForKey:(NSString *)kCGImagePropertyOrientation]);
             //[croppedImage.properties setValue:@1 forKey:(NSString *)kCGImagePropertyOrientation];
-            
-            [self performSegueWithIdentifier:@"Process Photo" sender:croppedImage];
+            UIView *view = [[UIView alloc] initWithFrame:self.view.frame];
+            view.backgroundColor = [UIColor blackColor];
+            view.alpha = 1;
+            [self.view addSubview:view];
+            [UIView animateWithDuration:0.3 animations:^{
+                view.alpha = 0;
+            } completion:^(BOOL finished) {
+                [self performSegueWithIdentifier:@"Process Photo" sender:croppedImage];
+            }];
+
             CIContext *softwareContext = [CIContext
                                           contextWithOptions:@{kCIContextUseSoftwareRenderer : @(YES)} ];
             // 3
